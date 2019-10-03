@@ -254,6 +254,7 @@ static void *acceptor_thread(void *arg)
 
 int main(int argc, char **argv)
 {
+	setvbuf(stdout, NULL, _IOLBF, 0);
 	int mysock = -1;
 
 	if (argc < 3) {
