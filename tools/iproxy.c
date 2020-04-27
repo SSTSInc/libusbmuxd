@@ -297,6 +297,7 @@ int main(int argc, char **argv)
 		int c_sock;
 		printf("waiting for connection\n");
 		while (1) {
+			printf("waiting for connection\n");
 			c_sock = socket_accept(mysock, listen_port);
 			if (c_sock) {
 				printf("accepted connection, fd = %d\n", c_sock);
