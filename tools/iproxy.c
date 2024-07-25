@@ -44,8 +44,13 @@ typedef unsigned int socklen_t;
 #else
 #include <sys/select.h>
 #include <sys/socket.h>
+#include <sys/un.h>
+#include <arpa/inet.h>
+#include <pthread.h>
+#include <netinet/in.h>
 #include <signal.h>
 #endif
+#include "socket.h"
 #include <libimobiledevice-glue/socket.h>
 #include <libimobiledevice-glue/thread.h>
 #include "usbmuxd.h"
@@ -238,6 +243,7 @@ static void print_usage(int argc, char **argv, int is_error)
 
 int main(int argc, char **argv)
 {
+	setvbuf(stdout, NULL, _IOLBF, 0);
 	char* device_udid = NULL;
 	char* source_addr = NULL;
 	uint16_t listen_port[16];
@@ -420,10 +426,10 @@ int main(int argc, char **argv)
 #endif
 		FD_SET(listen_sock[i].fd, &fds);
 	}
-
+	printf("waiting for connection\n");
 	// main loop
 	while (1) {
-		printf("waiting for connection\n");
+		
 		fd_set read_fds = fds;
 		int ret_sel = select(listen_sock[num_listen-1].fd+1, &read_fds, NULL, NULL, NULL);
 		if (ret_sel < 0) {
