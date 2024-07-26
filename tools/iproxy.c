@@ -381,7 +381,7 @@ int main(int argc, char **argv)
 
 	// first create the listening sockets
 	for (i = 0; i < num_pairs; i++) {
-		printf("Creating listening port %d for device port %d\n", listen_port[i], device_port[i]);
+		//printf("Creating listening port %d for device port %d\n", listen_port[i], device_port[i]);
 		if (!source_addr) {
 			listen_sock[num_listen].fd = socket_create(NULL, listen_port[i]);
 			if (listen_sock[num_listen].fd < 0) {
