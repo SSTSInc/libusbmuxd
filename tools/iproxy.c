@@ -50,7 +50,8 @@ typedef unsigned int socklen_t;
 #include <netinet/in.h>
 #include <signal.h>
 #endif
-#include "socket.h"
+// uncomment this line if require 
+//#include "socket.h"
 #include <libimobiledevice-glue/socket.h>
 #include <libimobiledevice-glue/thread.h>
 #include "usbmuxd.h"
